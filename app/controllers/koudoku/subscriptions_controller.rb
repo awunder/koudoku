@@ -4,6 +4,7 @@ module Koudoku
     before_action :show_existing_subscription, only: [:index, :new, :create], unless: :no_owner?
     before_action :load_subscription, only: [:show, :cancel, :edit, :update]
     before_action :load_plans, only: [:index, :edit]
+    skip_before_action :require_login, only: [:index, :new, :create]
 
     def load_plans
       @plans = ::Plan.order(:display_order)
